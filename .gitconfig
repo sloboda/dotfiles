@@ -1,0 +1,11 @@
+[user]
+	email = david.sloboda@gmail.com
+	name = David Sloboda
+[push]
+	default = simple
+[http]
+	sslVerify = true
+[core]
+	excludesfile = /Users/david/.gitignore
+[pull]
+	rebase = true
