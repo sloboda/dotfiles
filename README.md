@@ -1,2 +1,3 @@
 # Dotfiles
-My configuration files
+
+My configuration files.  All in one place.
