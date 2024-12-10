@@ -1,3 +1,17 @@
+" Disable the fullscreen toggle touchbar icon
+" Must be at top
+let g:macvim_default_touchbar_fullscreen=0
+" Other mac touchbar silliness
+" :help touchbar in MacVim
+" Permanently remove full screen toggle in touch bar
+" https://github.com/macvim-dev/macvim/issues/997
+"if has("gui_macvim")
+"  " Remove existing icons from touch bar
+"  aunmenu TouchBar.
+"endif
+
+
+
 " .vimrc for david.sloboda@gmail.com
 set nocompatible              " be iMproved, required
 filetype off                  " required for vundle
@@ -33,6 +47,11 @@ Bundle 'mattn/calendar-vim'
 " https://github.com/plasticboy/vim-markdown
 Plugin 'godlygeek/tabular'
 Plugin 'plasticboy/vim-markdown'
+"
+" forget black
+"Plugin 'psf/black'
+" https://github.com/vim-airline/vim-airline
+Plugin 'vim-airline/vim-airline'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -49,7 +68,8 @@ filetype plugin indent on    " required
 " see :h vundle for more details or wiki for FAQ
 " Put your non-Plugin stuff after this line
 syntax on                     " required for vimwiki
-set textwidth=80
+" set textwidth=80
+set textwidth=0    " try without the hard wrap at 80 for a bit
 " https://stackoverflow.com/questions/5419848/backspace-doesnt-work-in-gvim-7-2-64-bit-for-windows
 set backspace=indent,eol,start
 "colorscheme elflord
@@ -64,6 +84,7 @@ set linebreak
 set autoindent
 set hidden
 set incsearch
+set hlsearch
 " from http://learnvimscriptthehardway.stevelosh.com/chapters/06.html
 let mapleader = " "
 " from http://learnvimscriptthehardway.stevelosh.com/chapters/10.html
@@ -113,7 +134,7 @@ hi User5 guifg=#eeee40 guibg=#222222
 "nnoremap <leader>g :silent execute "grep! -R " . shellescape(expand("<cWORD>")) . " ."<cr>:copen<cr>
 "
 " abbreviations
-" These help correct typpos.  ;-) 
+" These help correct typpos.  ;-)
 ab adn and
 ab boht both
 ab destory destroy
@@ -129,25 +150,26 @@ ab jsut just
 ab lpfrpg legendary Pathfinder Role Playing Game campaign County Playground: The Grand Grind
 ab mroe more
 ab nad and
+ab reh the
 ab teh the
+ab Teh The
 ab THe The
 ab thr the
+ab tyds Thank you,<cr>David Sloboda
 ab wehre where
 ab YOu You
 
 
 " set up links to Public and Private wiki
 let wiki_1 = {}
-let wiki_1.path = '/Users/david/Shares/Lubuntu/mbb/Opus/PublicWiki/'
-let wiki_1.path_html = '/Users/david/Shares/Lubuntu/mbb/Opus/PublicWiki_html/'
+let wiki_1.path = '/Users/daslobod/Documents/Journal/'
+let wiki_1.path_html = '/Users/daslobod/Documents/Journal_html/'
 let wiki_1.syntax = 'markdown'
-let wiki_1.ext = '.markd'
-let wiki_2 = {}
-let wiki_2.path = '/Users/david/Shares/Lubuntu/mbb/Opus/Gazetteer/'
-let wiki_2.path_html = '/Users/david/Shares/Lubuntu/mbb/Opus/Gazetteer_html/'
-let wiki_2.syntax = 'markdown'
-let wiki_2.ext = '.markd'
-let g:vimwiki_list = [wiki_1, wiki_2]
+let wiki_1.ext = '.md'
+let wiki_1.index = 'README'
+let wiki_1.diary_rel_path = 'logbook'
+let wiki_1.diary_index = 'index'
+let g:vimwiki_list = [wiki_1]
 
 let g:vimwiki_ext2syntax = { '.markd' : 'markdown', '.mkd' : 'markdown', '.md' : 'markdown', '.markdown' : 'markdown', '.mdown' : 'markdown' }
 
@@ -157,12 +179,13 @@ let g:vimwiki_ext2syntax = { '.markd' : 'markdown', '.mkd' : 'markdown', '.md' :
 " http://vi.stackexchange.com/questions/422/displaying-tabs-as-characters
 set listchars=eol:⏎,tab:␉·,trail:␠,nbsp:⎵
 
-" Vimscript file settings ---------------------- {{{
-augroup filetype_vim
-    autocmd!
-    autocmd FileType vim setlocal foldmethod=marker
-augroup END
-" }}}
+""" Vimscript file settings ---------------------- {{{
+""augroup filetype_vim
+""    autocmd!
+""    autocmd FileType vim setlocal foldmethod=marker
+""augroup END
+""" }}}
+let g:markdown_folding = 1
 
 
 " highlight ColorColumn ctermbg=magenta
@@ -176,3 +199,10 @@ augroup END
 " enable spell check at start
 set spell spelllang=en_ca
 
+" python standards at employer requires black format
+" https://github.com/psf/black
+" https://github.office.opendns.com/slvpn/slvpn-docs/tree/master/standards/python
+" 2024-11-26 No No No - Not working.
+":autocmd BufWritePost *.py !black
+" turn off beep
+autocmd! GUIEnter * set vb t_vb=
