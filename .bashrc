@@ -57,22 +57,4 @@ PS1='\[\e[32m\u\] \[\e[95m\t\] \[\e[36m\W\] \[\e[93m\]$(git branch 2>/dev/null |
 ### add path for iterm2 utilities
 #export PATH=${PATH}:/Users/david/.iterm2
 
-# swiftbar set up. Formerly called bitbar
-#export CLOUD_VPN_REPO_DIR="/Users/daslobod/Repositories/cloud-vpn"
-#export CLOUD_VPN_DOCS_REPO_DIR="/Users/daslobod/Repositories/slvpn-docs"
-
-# streamline
-#export STRLN_AUTH=true
-# if $SSH_AUTH_SOCK is already running... use it.
-# commented out 2024-03-21 Thursday
-#source ~/.ssh-find-agent/ssh-find-agent.bash
-#set_ssh_agent_socket
-
-# Wed 24 Nov 2021 11:44:24 PST vault setup
-# commented out 2024-03-21 Thursday
-#export VAULT_ADDR=https://east.keeper.cisco.com:443
-#export VAULT_NAMESPACE=streamline/sysv-test
-#. "$HOME/.cargo/env"
-
-#LDAP_USERNAME=daslobod # find your Eng Unixname at https://meraki.okta.com/enduser/settings
 #DEV_MACHINE=dev133 # Ask Lita (open source chat bot) on Slack "whois <LDAP_USERNAME>"
